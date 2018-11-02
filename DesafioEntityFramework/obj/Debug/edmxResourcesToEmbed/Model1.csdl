@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DesafioModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="areaConocimiento">
+    <Key>
+      <PropertyRef Name="id_area_conocimiento" />
+    </Key>
+    <Property Name="id_area_conocimiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="narea_conocimiento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_departamento" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="departamento" Relationship="Self.fk_departamento_area" FromRole="areaConocimiento" ToRole="departamento" />
+    <NavigationProperty Name="profesor" Relationship="Self.fk_profesor_area" FromRole="areaConocimiento" ToRole="profesor" />
+    <NavigationProperty Name="titulacion" Relationship="Self.fk_titulacion_areaConocimiento" FromRole="areaConocimiento" ToRole="titulacion" />
+  </EntityType>
+  <EntityType Name="departamento">
+    <Key>
+      <PropertyRef Name="id_departamento" />
+    </Key>
+    <Property Name="id_departamento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ndepartamento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="areaConocimiento" Relationship="Self.fk_departamento_area" FromRole="departamento" ToRole="areaConocimiento" />
+  </EntityType>
+  <EntityType Name="materia">
+    <Key>
+      <PropertyRef Name="id_materia" />
+    </Key>
+    <Property Name="id_materia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nmateria" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="codigo_materia" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="curso" Type="Int32" />
+    <Property Name="id_tipo_materia" Type="Int32" Nullable="false" />
+    <Property Name="id_titulacion" Type="Int32" Nullable="false" />
+    <Property Name="creditos_teoricos" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="creditos_laboratorio" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="duracion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="limiteAdmision" Type="Int32" />
+    <Property Name="gruposTeoria" Type="Int32" />
+    <Property Name="gruposLaboratorio" Type="Int32" />
+    <NavigationProperty Name="titulacion" Relationship="Self.fk_equivalencia" FromRole="materia" ToRole="titulacion" />
+    <NavigationProperty Name="tipoMateria" Relationship="Self.FK_MateriaTipo" FromRole="materia" ToRole="tipoMateria" />
+    <NavigationProperty Name="profesor" Relationship="Self.materia_profesor" FromRole="materia" ToRole="profesor" />
+  </EntityType>
+  <EntityType Name="profesor">
+    <Key>
+      <PropertyRef Name="id_profesor" />
+    </Key>
+    <Property Name="id_profesor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="despacho" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="horario_Consultas" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="id_area_conocimiento" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="areaConocimiento" Relationship="Self.fk_profesor_area" FromRole="profesor" ToRole="areaConocimiento" />
+    <NavigationProperty Name="materia" Relationship="Self.materia_profesor" FromRole="profesor" ToRole="materia" />
+  </EntityType>
+  <EntityType Name="tipoMateria">
+    <Key>
+      <PropertyRef Name="id_tipo_materia" />
+    </Key>
+    <Property Name="id_tipo_materia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ntipo_materia" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="materia" Relationship="Self.FK_MateriaTipo" FromRole="tipoMateria" ToRole="materia" />
+  </EntityType>
+  <EntityType Name="titulacion">
+    <Key>
+      <PropertyRef Name="id_titulacion" />
+    </Key>
+    <Property Name="id_titulacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ntitulacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_area_conocimiento" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="areaConocimiento" Relationship="Self.fk_titulacion_areaConocimiento" FromRole="titulacion" ToRole="areaConocimiento" />
+    <NavigationProperty Name="materia" Relationship="Self.fk_equivalencia" FromRole="titulacion" ToRole="materia" />
+  </EntityType>
+  <Association Name="fk_departamento_area">
+    <End Role="departamento" Type="Self.departamento" Multiplicity="1" />
+    <End Role="areaConocimiento" Type="Self.areaConocimiento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="departamento">
+        <PropertyRef Name="id_departamento" />
+      </Principal>
+      <Dependent Role="areaConocimiento">
+        <PropertyRef Name="id_departamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_profesor_area">
+    <End Role="areaConocimiento" Type="Self.areaConocimiento" Multiplicity="1" />
+    <End Role="profesor" Type="Self.profesor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="areaConocimiento">
+        <PropertyRef Name="id_area_conocimiento" />
+      </Principal>
+      <Dependent Role="profesor">
+        <PropertyRef Name="id_area_conocimiento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_titulacion_areaConocimiento">
+    <End Role="areaConocimiento" Type="Self.areaConocimiento" Multiplicity="1" />
+    <End Role="titulacion" Type="Self.titulacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="areaConocimiento">
+        <PropertyRef Name="id_area_conocimiento" />
+      </Principal>
+      <Dependent Role="titulacion">
+        <PropertyRef Name="id_area_conocimiento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_equivalencia">
+    <End Role="titulacion" Type="Self.titulacion" Multiplicity="1" />
+    <End Role="materia" Type="Self.materia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="titulacion">
+        <PropertyRef Name="id_titulacion" />
+      </Principal>
+      <Dependent Role="materia">
+        <PropertyRef Name="id_titulacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MateriaTipo">
+    <End Role="tipoMateria" Type="Self.tipoMateria" Multiplicity="1" />
+    <End Role="materia" Type="Self.materia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipoMateria">
+        <PropertyRef Name="id_tipo_materia" />
+      </Principal>
+      <Dependent Role="materia">
+        <PropertyRef Name="id_tipo_materia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="materia_profesor">
+    <End Role="materia" Type="Self.materia" Multiplicity="*" />
+    <End Role="profesor" Type="Self.profesor" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="DesafioEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="areaConocimiento" EntityType="Self.areaConocimiento" />
+    <EntitySet Name="departamento" EntityType="Self.departamento" />
+    <EntitySet Name="materia" EntityType="Self.materia" />
+    <EntitySet Name="profesor" EntityType="Self.profesor" />
+    <EntitySet Name="tipoMateria" EntityType="Self.tipoMateria" />
+    <EntitySet Name="titulacion" EntityType="Self.titulacion" />
+    <AssociationSet Name="fk_departamento_area" Association="Self.fk_departamento_area">
+      <End Role="departamento" EntitySet="departamento" />
+      <End Role="areaConocimiento" EntitySet="areaConocimiento" />
+    </AssociationSet>
+    <AssociationSet Name="fk_profesor_area" Association="Self.fk_profesor_area">
+      <End Role="areaConocimiento" EntitySet="areaConocimiento" />
+      <End Role="profesor" EntitySet="profesor" />
+    </AssociationSet>
+    <AssociationSet Name="fk_titulacion_areaConocimiento" Association="Self.fk_titulacion_areaConocimiento">
+      <End Role="areaConocimiento" EntitySet="areaConocimiento" />
+      <End Role="titulacion" EntitySet="titulacion" />
+    </AssociationSet>
+    <AssociationSet Name="fk_equivalencia" Association="Self.fk_equivalencia">
+      <End Role="titulacion" EntitySet="titulacion" />
+      <End Role="materia" EntitySet="materia" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MateriaTipo" Association="Self.FK_MateriaTipo">
+      <End Role="tipoMateria" EntitySet="tipoMateria" />
+      <End Role="materia" EntitySet="materia" />
+    </AssociationSet>
+    <AssociationSet Name="materia_profesor" Association="Self.materia_profesor">
+      <End Role="materia" EntitySet="materia" />
+      <End Role="profesor" EntitySet="profesor" />
+    </AssociationSet>
+    <FunctionImport Name="eliminarMateria">
+      <Parameter Name="idMateria" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="eliminarProfe">
+      <Parameter Name="id_profesor" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="insertarDepartamento">
+      <Parameter Name="departamento" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insertarMateria">
+      <Parameter Name="materia" Mode="In" Type="String" />
+      <Parameter Name="codigo_materia" Mode="In" Type="String" />
+      <Parameter Name="curso" Mode="In" Type="Int32" />
+      <Parameter Name="id_tipo_materia" Mode="In" Type="Int32" />
+      <Parameter Name="id_titulacion" Mode="In" Type="Int32" />
+      <Parameter Name="creditos_teoricos" Mode="In" Type="Decimal" />
+      <Parameter Name="creditos_laboratorio" Mode="In" Type="Decimal" />
+      <Parameter Name="duracion" Mode="In" Type="String" />
+      <Parameter Name="limiteAdmision" Mode="In" Type="Int32" />
+      <Parameter Name="gruposTeoria" Mode="In" Type="Int32" />
+      <Parameter Name="gruposLaboratorio" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="insertarProfe">
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="apellido" Mode="In" Type="String" />
+      <Parameter Name="despacho" Mode="In" Type="String" />
+      <Parameter Name="horario_Consultas" Mode="In" Type="String" />
+      <Parameter Name="id_area_conocimiento" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="insertarTipo">
+      <Parameter Name="tipo" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="modificarMateria">
+      <Parameter Name="materia" Mode="In" Type="String" />
+      <Parameter Name="codigo_materia" Mode="In" Type="String" />
+      <Parameter Name="curso" Mode="In" Type="Int32" />
+      <Parameter Name="id_tipo_materia" Mode="In" Type="Int32" />
+      <Parameter Name="id_titulacion" Mode="In" Type="Int32" />
+      <Parameter Name="creditos_teoricos" Mode="In" Type="Decimal" />
+      <Parameter Name="creditos_laboratorio" Mode="In" Type="Decimal" />
+      <Parameter Name="duracion" Mode="In" Type="String" />
+      <Parameter Name="limiteAdmision" Mode="In" Type="Int32" />
+      <Parameter Name="gruposTeoria" Mode="In" Type="Int32" />
+      <Parameter Name="gruposLaboratorio" Mode="In" Type="Int32" />
+      <Parameter Name="idMateria" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="modificarProfe">
+      <Parameter Name="id_profesor" Mode="In" Type="Int32" />
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="apellido" Mode="In" Type="String" />
+      <Parameter Name="despacho" Mode="In" Type="String" />
+      <Parameter Name="horario_Consultas" Mode="In" Type="String" />
+      <Parameter Name="id_area_conocimiento" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="mostrarMaterias" ReturnType="Collection(DesafioModel.mostrarMaterias_Result)">
+      <Parameter Name="idTipo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="mostrarMateriasAll" ReturnType="Collection(DesafioModel.mostrarMateriasAll_Result)" />
+    <FunctionImport Name="verDepartamentos" ReturnType="Collection(DesafioModel.verDepartamentos_Result)" />
+    <FunctionImport Name="verProfe" ReturnType="Collection(DesafioModel.verProfe_Result)" />
+    <FunctionImport Name="verProfesById" ReturnType="Collection(DesafioModel.verProfesById_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="verTipos" ReturnType="Collection(DesafioModel.verTipos_Result)" />
+  </EntityContainer>
+  <ComplexType Name="mostrarMaterias_Result">
+    <Property Type="Int32" Name="id_materia" Nullable="false" />
+    <Property Type="String" Name="nmateria" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="codigo_materia" Nullable="false" MaxLength="3" />
+    <Property Type="Int32" Name="curso" Nullable="true" />
+    <Property Type="Int32" Name="id_tipo_materia" Nullable="false" />
+    <Property Type="Int32" Name="id_titulacion" Nullable="false" />
+    <Property Type="Decimal" Name="creditos_teoricos" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="creditos_laboratorio" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="String" Name="duracion" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="limiteAdmision" Nullable="true" />
+    <Property Type="Int32" Name="gruposTeoria" Nullable="true" />
+    <Property Type="Int32" Name="gruposLaboratorio" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="mostrarMateriasAll_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Codigo" Nullable="false" MaxLength="3" />
+    <Property Type="Int32" Name="Curso" Nullable="true" />
+    <Property Type="String" Name="Tipo" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Titulacion" Nullable="false" MaxLength="100" />
+    <Property Type="Decimal" Name="Creditos_Teoricos" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Creditos_Laboratorio" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="String" Name="Duracion" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Limite_Admision" Nullable="true" />
+    <Property Type="Int32" Name="Grupos_Teoria" Nullable="true" />
+    <Property Type="Int32" Name="Grupos_Laboratorio" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="verDepartamentos_Result">
+    <Property Type="Int32" Name="id_departamento" Nullable="false" />
+    <Property Type="String" Name="ndepartamento" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="verProfe_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Nombres" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Despacho" Nullable="true" MaxLength="6" />
+    <Property Type="String" Name="Horario_de_consultas" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Area_de_conocimiento" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Departamento" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="verProfesById_Result">
+    <Property Type="Int32" Name="id_profesor" Nullable="false" />
+    <Property Type="String" Name="nombre" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="apellido" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="despacho" Nullable="true" MaxLength="6" />
+    <Property Type="String" Name="horario_Consultas" Nullable="true" MaxLength="150" />
+    <Property Type="Int32" Name="id_area_conocimiento" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="verTipos_Result">
+    <Property Type="Int32" Name="id_tipo_materia" Nullable="false" />
+    <Property Type="String" Name="ntipo_materia" Nullable="false" MaxLength="20" />
+  </ComplexType>
+</Schema>

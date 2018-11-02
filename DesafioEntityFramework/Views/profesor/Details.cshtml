@@ -1,0 +1,58 @@
+﻿@model DesafioEntityFramework.profesor
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalle de</h2>
+
+<div>
+    <h4>profesor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.apellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.despacho)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.despacho)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.horario_Consultas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.horario_Consultas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.areaConocimiento.narea_conocimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.areaConocimiento.narea_conocimiento)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id_profesor }) |
+    @Html.ActionLink("Regresar al Listado", "Index")
+</p>

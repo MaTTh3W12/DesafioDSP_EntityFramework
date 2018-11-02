@@ -1,0 +1,95 @@
+﻿@model IEnumerable<DesafioEntityFramework.materia>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Administracion de Materias</h2>
+
+<p>
+    @Html.ActionLink("Agregar una Nueva Materia", "Create")
+</p>
+<table class="table table-bordered table-responsive">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nmateria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.codigo_materia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.curso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.creditos_teoricos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.creditos_laboratorio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.duracion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.limiteAdmision)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gruposTeoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gruposLaboratorio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.titulacion.ntitulacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tipoMateria.ntipo_materia)
+        </th>
+        <th>
+            Acciones
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nmateria)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.codigo_materia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.curso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.creditos_teoricos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.creditos_laboratorio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.duracion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.limiteAdmision)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gruposTeoria)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gruposLaboratorio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.titulacion.ntitulacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipoMateria.ntipo_materia)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.id_materia }, new { @class = "btn btn-success" }) 
+            @Html.ActionLink("Detalle", "Details", new { id=item.id_materia }, new { @class = "btn btn-warning" }) 
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.id_materia }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

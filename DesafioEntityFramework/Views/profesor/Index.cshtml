@@ -1,0 +1,59 @@
+﻿@model IEnumerable<DesafioEntityFramework.profesor>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Administracion de Docentes</h2>
+
+<p>
+    @Html.ActionLink("Agregar a un nuevo Docente", "Create")
+</p>
+<table class="table table-bordered table-responsive">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apellido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.despacho)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.horario_Consultas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.areaConocimiento.narea_conocimiento)
+        </th>
+        <th>
+            Acciones
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apellido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.despacho)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.horario_Consultas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.areaConocimiento.narea_conocimiento)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.id_profesor }, new { @class = "btn btn-success" }) |
+            @Html.ActionLink("Detalle", "Details", new { id=item.id_profesor }, new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.id_profesor }, new { @class = "btn btn-danger" } )
+        </td>
+    </tr>
+}
+
+</table>

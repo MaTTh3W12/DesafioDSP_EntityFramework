@@ -1,0 +1,64 @@
+﻿@model DesafioEntityFramework.profesor
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Estas seguro que quieres eliminar este?</h3>
+<div>
+    <h4>profesor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.apellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.despacho)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.despacho)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.horario_Consultas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.horario_Consultas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.areaConocimiento.narea_conocimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.areaConocimiento.narea_conocimiento)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+            @Html.ActionLink("Regresar al Listado", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,106 @@
+﻿@model DesafioEntityFramework.materia
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalle de la</h2>
+
+<div>
+    <h4>materia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nmateria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nmateria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.codigo_materia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.codigo_materia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.curso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.curso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.creditos_teoricos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.creditos_teoricos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.creditos_laboratorio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.creditos_laboratorio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.duracion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.duracion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.limiteAdmision)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.limiteAdmision)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gruposTeoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gruposTeoria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gruposLaboratorio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gruposLaboratorio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.titulacion.ntitulacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.titulacion.ntitulacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipoMateria.ntipo_materia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipoMateria.ntipo_materia)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modificar", "Edit", new { id = Model.id_materia }) |
+    @Html.ActionLink("Regresar al Listado", "Index")
+</p>

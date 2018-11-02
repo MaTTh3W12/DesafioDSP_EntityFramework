@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DesafioModelStoreContainer" CdmEntityContainer="DesafioEntities">
+    <EntitySetMapping Name="areaConocimiento">
+      <EntityTypeMapping TypeName="DesafioModel.areaConocimiento">
+        <MappingFragment StoreEntitySet="areaConocimiento">
+          <ScalarProperty Name="id_area_conocimiento" ColumnName="id_area_conocimiento" />
+          <ScalarProperty Name="narea_conocimiento" ColumnName="narea_conocimiento" />
+          <ScalarProperty Name="id_departamento" ColumnName="id_departamento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="departamento">
+      <EntityTypeMapping TypeName="DesafioModel.departamento">
+        <MappingFragment StoreEntitySet="departamento">
+          <ScalarProperty Name="id_departamento" ColumnName="id_departamento" />
+          <ScalarProperty Name="ndepartamento" ColumnName="ndepartamento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="materia">
+      <EntityTypeMapping TypeName="DesafioModel.materia">
+        <MappingFragment StoreEntitySet="materia">
+          <ScalarProperty Name="id_materia" ColumnName="id_materia" />
+          <ScalarProperty Name="nmateria" ColumnName="nmateria" />
+          <ScalarProperty Name="codigo_materia" ColumnName="codigo_materia" />
+          <ScalarProperty Name="curso" ColumnName="curso" />
+          <ScalarProperty Name="id_tipo_materia" ColumnName="id_tipo_materia" />
+          <ScalarProperty Name="id_titulacion" ColumnName="id_titulacion" />
+          <ScalarProperty Name="creditos_teoricos" ColumnName="creditos_teoricos" />
+          <ScalarProperty Name="creditos_laboratorio" ColumnName="creditos_laboratorio" />
+          <ScalarProperty Name="duracion" ColumnName="duracion" />
+          <ScalarProperty Name="limiteAdmision" ColumnName="limiteAdmision" />
+          <ScalarProperty Name="gruposTeoria" ColumnName="gruposTeoria" />
+          <ScalarProperty Name="gruposLaboratorio" ColumnName="gruposLaboratorio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="profesor">
+      <EntityTypeMapping TypeName="DesafioModel.profesor">
+        <MappingFragment StoreEntitySet="profesor">
+          <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="despacho" ColumnName="despacho" />
+          <ScalarProperty Name="horario_Consultas" ColumnName="horario_Consultas" />
+          <ScalarProperty Name="id_area_conocimiento" ColumnName="id_area_conocimiento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipoMateria">
+      <EntityTypeMapping TypeName="DesafioModel.tipoMateria">
+        <MappingFragment StoreEntitySet="tipoMateria">
+          <ScalarProperty Name="id_tipo_materia" ColumnName="id_tipo_materia" />
+          <ScalarProperty Name="ntipo_materia" ColumnName="ntipo_materia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="titulacion">
+      <EntityTypeMapping TypeName="DesafioModel.titulacion">
+        <MappingFragment StoreEntitySet="titulacion">
+          <ScalarProperty Name="id_titulacion" ColumnName="id_titulacion" />
+          <ScalarProperty Name="ntitulacion" ColumnName="ntitulacion" />
+          <ScalarProperty Name="id_area_conocimiento" ColumnName="id_area_conocimiento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="materia_profesor" TypeName="DesafioModel.materia_profesor" StoreEntitySet="materia_profesor">
+      <EndProperty Name="materia">
+        <ScalarProperty Name="id_materia" ColumnName="id_materia" />
+      </EndProperty>
+      <EndProperty Name="profesor">
+        <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="eliminarMateria" FunctionName="DesafioModel.Store.eliminarMateria" />
+    <FunctionImportMapping FunctionImportName="eliminarProfe" FunctionName="DesafioModel.Store.eliminarProfe" />
+    <FunctionImportMapping FunctionImportName="insertarDepartamento" FunctionName="DesafioModel.Store.insertarDepartamento" />
+    <FunctionImportMapping FunctionImportName="insertarMateria" FunctionName="DesafioModel.Store.insertarMateria" />
+    <FunctionImportMapping FunctionImportName="insertarProfe" FunctionName="DesafioModel.Store.insertarProfe" />
+    <FunctionImportMapping FunctionImportName="insertarTipo" FunctionName="DesafioModel.Store.insertarTipo" />
+    <FunctionImportMapping FunctionImportName="modificarMateria" FunctionName="DesafioModel.Store.modificarMateria" />
+    <FunctionImportMapping FunctionImportName="modificarProfe" FunctionName="DesafioModel.Store.modificarProfe" />
+    <FunctionImportMapping FunctionImportName="mostrarMaterias" FunctionName="DesafioModel.Store.mostrarMaterias">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DesafioModel.mostrarMaterias_Result">
+          <ScalarProperty Name="id_materia" ColumnName="id_materia" />
+          <ScalarProperty Name="nmateria" ColumnName="nmateria" />
+          <ScalarProperty Name="codigo_materia" ColumnName="codigo_materia" />
+          <ScalarProperty Name="curso" ColumnName="curso" />
+          <ScalarProperty Name="id_tipo_materia" ColumnName="id_tipo_materia" />
+          <ScalarProperty Name="id_titulacion" ColumnName="id_titulacion" />
+          <ScalarProperty Name="creditos_teoricos" ColumnName="creditos_teoricos" />
+          <ScalarProperty Name="creditos_laboratorio" ColumnName="creditos_laboratorio" />
+          <ScalarProperty Name="duracion" ColumnName="duracion" />
+          <ScalarProperty Name="limiteAdmision" ColumnName="limiteAdmision" />
+          <ScalarProperty Name="gruposTeoria" ColumnName="gruposTeoria" />
+          <ScalarProperty Name="gruposLaboratorio" ColumnName="gruposLaboratorio" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="mostrarMateriasAll" FunctionName="DesafioModel.Store.mostrarMateriasAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DesafioModel.mostrarMateriasAll_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Curso" ColumnName="Curso" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Titulacion" ColumnName="Titulacion" />
+          <ScalarProperty Name="Creditos_Teoricos" ColumnName="Creditos Teoricos" />
+          <ScalarProperty Name="Creditos_Laboratorio" ColumnName="Creditos Laboratorio" />
+          <ScalarProperty Name="Duracion" ColumnName="Duracion" />
+          <ScalarProperty Name="Limite_Admision" ColumnName="Limite Admision" />
+          <ScalarProperty Name="Grupos_Teoria" ColumnName="Grupos Teoria" />
+          <ScalarProperty Name="Grupos_Laboratorio" ColumnName="Grupos Laboratorio" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="verDepartamentos" FunctionName="DesafioModel.Store.verDepartamentos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DesafioModel.verDepartamentos_Result">
+          <ScalarProperty Name="id_departamento" ColumnName="id_departamento" />
+          <ScalarProperty Name="ndepartamento" ColumnName="ndepartamento" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="verProfe" FunctionName="DesafioModel.Store.verProfe">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DesafioModel.verProfe_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="Despacho" ColumnName="Despacho" />
+          <ScalarProperty Name="Horario_de_consultas" ColumnName="Horario de consultas" />
+          <ScalarProperty Name="Area_de_conocimiento" ColumnName="Area de conocimiento" />
+          <ScalarProperty Name="Departamento" ColumnName="Departamento" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="verProfesById" FunctionName="DesafioModel.Store.verProfesById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DesafioModel.verProfesById_Result">
+          <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="despacho" ColumnName="despacho" />
+          <ScalarProperty Name="horario_Consultas" ColumnName="horario_Consultas" />
+          <ScalarProperty Name="id_area_conocimiento" ColumnName="id_area_conocimiento" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="verTipos" FunctionName="DesafioModel.Store.verTipos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DesafioModel.verTipos_Result">
+          <ScalarProperty Name="id_tipo_materia" ColumnName="id_tipo_materia" />
+          <ScalarProperty Name="ntipo_materia" ColumnName="ntipo_materia" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>
